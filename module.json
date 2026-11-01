@@ -1,0 +1,38 @@
+{
+  "id": "guia-da-mesa",
+  "title": "Guia da Mesa — Tutoriais e Destaques",
+  "description": "Ensine quem nunca usou o Foundry: o narrador monta tutoriais clicando na própria tela (holofote, seta animada, brilho) e, durante a sessão, aponta ao vivo qualquer botão, aba ou campo da ficha na tela dos jogadores.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Angelo",
+      "email": "angelomagno@msn.com"
+    }
+  ],
+  "compatibility": {
+    "minimum": "12",
+    "verified": "13"
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "styles": [
+    "styles/guia-da-mesa.css"
+  ],
+  "languages": [
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "socket": true,
+  "url": "https://github.com/angelomagnoBR/tutorial-foundry",
+  "manifest": "https://github.com/angelomagnoBR/tutorial-foundry/releases/latest/download/module.json",
+  "download": "https://github.com/angelomagnoBR/tutorial-foundry/releases/latest/download/guia-da-mesa.zip"
+}

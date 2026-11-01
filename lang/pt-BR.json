@@ -1,0 +1,249 @@
+{
+  "GDM": {
+    "Common": {
+      "Cancel": "Cancelar",
+      "Close": "Fechar",
+      "Confirm": "Confirmar",
+      "Save": "Salvar",
+      "Online": "online",
+      "Offline": "offline"
+    },
+    "Dock": {
+      "Point": "Apontar algo na tela dos jogadores (Alt+G)",
+      "PointShort": "Apontar",
+      "Area": "Marcar uma área da tela (Alt+Shift+G)",
+      "Clear": "Apagar destaques de todos",
+      "Cleared": "Destaques apagados",
+      "Manager": "Tutoriais (Guia da Mesa)",
+      "Drag": "Arraste para mover",
+      "Help": "Tutoriais e ajuda",
+      "HelpShort": "Ajuda",
+      "Call": "Chamar o narrador",
+      "Called": "O narrador foi avisado",
+      "CallWait": "Aguarde um instante antes de chamar de novo",
+      "Pointer": "Apontar"
+    },
+    "Picker": {
+      "Title": "Escolha o que destacar",
+      "Element": "Elemento",
+      "Area": "Área",
+      "HelpElement": "Clique para escolher · Rodinha: maior/menor · Tab: área",
+      "HelpArea": "Clique e arraste para desenhar · Tab: elemento"
+    },
+    "Fx": {
+      "Dim": "Escurecer o resto",
+      "Ring": "Brilho pulsante",
+      "Arrow": "Seta animada"
+    },
+    "Target": {
+      "None": "Mensagem no centro (sem destaque)",
+      "MySheet": "Ficha do jogador",
+      "Sheet": "Ficha",
+      "AreaLabel": "Área desenhada na tela"
+    },
+    "Preset": {
+      "sidebar": "Barra lateral (inteira)",
+      "tab-chat": "Aba: Chat",
+      "chat-log": "Mensagens do chat",
+      "chat-input": "Campo de digitar no chat",
+      "roll-mode": "Quem vê a rolagem",
+      "tab-combat": "Aba: Combate",
+      "tab-scenes": "Aba: Cenas",
+      "tab-actors": "Aba: Atores",
+      "tab-items": "Aba: Itens",
+      "tab-journal": "Aba: Diário",
+      "tab-tables": "Aba: Tabelas",
+      "tab-cards": "Aba: Cartas",
+      "tab-playlists": "Aba: Músicas",
+      "tab-compendium": "Aba: Compêndios",
+      "tab-settings": "Aba: Configurações",
+      "scene-controls": "Ferramentas do mapa (esquerda)",
+      "hotbar": "Barra de atalhos",
+      "players": "Jogadores conectados",
+      "navigation": "Navegação de cenas",
+      "camera": "Câmeras / vídeo",
+      "my-sheet": "Ficha do jogador (inteira)"
+    },
+    "Tab": {
+      "chat": "Chat",
+      "combat": "Combate",
+      "scenes": "Cenas",
+      "actors": "Atores",
+      "items": "Itens",
+      "journal": "Diário",
+      "tables": "Tabelas",
+      "cards": "Cartas",
+      "playlists": "Músicas",
+      "compendium": "Compêndios",
+      "settings": "Configurações"
+    },
+    "Before": {
+      "none": "Nada",
+      "sidebarTab": "Abrir aba da barra lateral",
+      "openMySheet": "Abrir a ficha do jogador",
+      "closeWindows": "Fechar janelas abertas",
+      "openJournal": "Abrir um diário",
+      "runMacro": "Executar uma macro"
+    },
+    "Pos": {
+      "auto": "Automática",
+      "top": "Acima",
+      "bottom": "Abaixo",
+      "left": "À esquerda",
+      "right": "À direita",
+      "center": "No centro da tela"
+    },
+    "Tour": {
+      "Next": "Próximo",
+      "Prev": "Voltar",
+      "Finish": "Concluir",
+      "Skip": "Pular",
+      "Close": "Sair do tutorial",
+      "Preview": "Teste",
+      "ClickHint": "Clique no destaque para continuar",
+      "Missing": "Isto não está visível na sua tela agora. Siga o texto acima ou chame o narrador."
+    },
+    "Live": {
+      "PickTitle": "O que você quer mostrar aos jogadores?",
+      "QuickTitle": "Mostrar aos jogadores",
+      "MessagePlaceholder": "Mensagem (opcional) — ex.: \"Clique aqui para rolar\"",
+      "All": "Todos",
+      "Seconds": "{n} s",
+      "UntilClosed": "Até fechar",
+      "Send": "Mostrar",
+      "GM": "O narrador",
+      "IsShowing": "{who} está mostrando",
+      "ShowingTo": "Você está mostrando para: {who}",
+      "DefaultMessage": "Olhe aqui! 👀",
+      "Got": "Entendi",
+      "ClearAll": "Apagar",
+      "Missing": "Isso não está aberto na sua tela. Pergunte ao narrador onde fica.",
+      "MissingEcho": "Este item não está visível na sua tela, mas foi enviado.",
+      "Acked": "{name} viu o destaque"
+    },
+    "Manager": {
+      "Title": "Guia da Mesa — Tutoriais",
+      "New": "Novo tutorial",
+      "NewName": "Novo tutorial",
+      "Starter": "Usar modelo “Primeiros passos”",
+      "StarterAdded": "Modelo adicionado — ajuste do seu jeito!",
+      "Import": "Importar",
+      "Imported": "{n} tutorial(is) importado(s)",
+      "EmptyTitle": "Nenhum tutorial ainda",
+      "EmptyText": "Comece pelo modelo pronto “Primeiros passos no Foundry” e ajuste à sua mesa, ou crie um do zero clicando nas partes da tela que quer mostrar.",
+      "Untitled": "(sem nome)",
+      "Steps": "{n} passos",
+      "AutoTag": "Abre sozinho",
+      "HelpTag": "No botão Ajuda",
+      "Send": "Enviar aos jogadores",
+      "SendTitle": "Abrir “{name}” na tela de quem?",
+      "SendNow": "Enviar agora",
+      "Sent": "Tutorial enviado para {n} jogador(es)",
+      "NoPlayers": "Nenhum jogador cadastrado neste mundo.",
+      "Edit": "Editar",
+      "Test": "Testar",
+      "Duplicate": "Duplicar",
+      "Copy": "cópia",
+      "Export": "Exportar (JSON)",
+      "ResetProgress": "Zerar progresso dos jogadores",
+      "ResetConfirm": "Zerar o progresso de todos em <b>{name}</b>? Quem já viu poderá receber o tutorial automático de novo.",
+      "Delete": "Excluir",
+      "DeleteConfirm": "Excluir o tutorial <b>{name}</b>? Não dá para desfazer.",
+      "StatusDone": "Concluiu",
+      "StatusSkipped": "Pulou",
+      "StatusPending": "Ainda não viu",
+      "Tip": "Durante o jogo, use o botão <b>Apontar</b> do painel flutuante (ou <b>Alt+G</b>) para destacar qualquer coisa na tela dos jogadores."
+    },
+    "Editor": {
+      "Title": "Editar tutorial",
+      "NamePh": "Nome do tutorial",
+      "DescPh": "Descrição curta (aparece para o jogador)",
+      "AutoStart": "Abrir sozinho para quem ainda não viu",
+      "ShowInHelp": "Disponível no botão Ajuda dos jogadores",
+      "IconHint": "Ícone (classe do Font Awesome)",
+      "AddFromScreen": "Adicionar clicando na tela",
+      "AddStep": "Passo vazio",
+      "NoSteps": "Adicione o primeiro passo clicando em algo da tela.",
+      "NoTitle": "(sem título)",
+      "FirstStepTitle": "Bem-vindo!",
+      "FirstStepText": "Escreva aqui a primeira mensagem para o jogador.",
+      "MoveUp": "Subir",
+      "MoveDown": "Descer",
+      "DeleteStep": "Excluir o passo {n}?",
+      "StepTitle": "Título",
+      "StepTitlePh": "Ex.: Aqui você rola os dados",
+      "StepText": "Texto",
+      "StepTextPh": "Explique com calma, como se fosse a primeira vez da pessoa no Foundry.",
+      "StepTextHint": "Aceita HTML, links do Foundry (@UUID[...]) e rolagens ([[/r 1d20]]).",
+      "Target": "O que destacar",
+      "PickElement": "Clicar na tela",
+      "PickArea": "Desenhar área",
+      "Presets": "📍 Locais comuns…",
+      "NoTarget": "Sem destaque",
+      "ShowMe": "Ver",
+      "PickTitle": "Clique no que este passo deve destacar",
+      "MineSheet": "Mostrar na ficha do próprio jogador (recomendado)",
+      "Before": "Antes deste passo",
+      "DropJournal": "Arraste um diário aqui ou cole o UUID",
+      "DropMacro": "Arraste uma macro aqui ou cole o UUID",
+      "Position": "Posição do texto",
+      "Effects": "Efeitos",
+      "Advance": "Para avançar",
+      "AdvButton": "Botão Próximo",
+      "AdvClick": "Clicar no destaque",
+      "Image": "Imagem (opcional)",
+      "ImagePh": "Caminho da imagem",
+      "TestHere": "Testar deste passo",
+      "TestAll": "Testar do início",
+      "Unsaved": "Alterações não salvas",
+      "Saved": "Tutorial salvo",
+      "NotFound": "Não encontrei esse alvo na tela agora",
+      "DiscardConfirm": "Você tem alterações não salvas neste tutorial.",
+      "SaveAndClose": "Salvar e fechar",
+      "Discard": "Descartar"
+    },
+    "Help": {
+      "Title": "Tutoriais",
+      "Empty": "O narrador ainda não preparou tutoriais."
+    },
+    "Notify": {
+      "EmptyTour": "Este tutorial não tem passos.",
+      "ImportError": "Arquivo inválido.",
+      "TourDone": "{name} concluiu “{tour}”",
+      "TourSkipped": "{name} pulou “{tour}”",
+      "HelpCalled": "🙋 {name} está pedindo ajuda"
+    },
+    "Keys": {
+      "Point": "Apontar algo na tela dos jogadores",
+      "Area": "Marcar área na tela dos jogadores",
+      "Clear": "Apagar destaques",
+      "Manager": "Abrir os tutoriais"
+    },
+    "Settings": {
+      "Accent": {
+        "Name": "Cor dos destaques",
+        "Hint": "Cor do brilho, da seta e dos botões (formato #rrggbb)."
+      },
+      "Dim": {
+        "Name": "Escuridão do holofote",
+        "Hint": "Quanto o resto da tela escurece quando algo é destacado."
+      },
+      "HelpButton": {
+        "Name": "Botão de ajuda para jogadores",
+        "Hint": "Mostra aos jogadores um botão flutuante para refazer tutoriais e chamar o narrador."
+      },
+      "DockGM": {
+        "Name": "Painel flutuante do narrador",
+        "Hint": "Mostra o painel com Apontar / Área / Apagar / Tutoriais."
+      },
+      "Echo": {
+        "Name": "Ver o que estou mostrando",
+        "Hint": "Quando você aponta algo, o destaque aparece também na sua tela."
+      },
+      "Sound": {
+        "Name": "Som ao receber destaque",
+        "Hint": "Toca um aviso curto quando o narrador aponta algo."
+      }
+    }
+  }
+}

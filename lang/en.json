@@ -1,0 +1,249 @@
+{
+  "GDM": {
+    "Common": {
+      "Cancel": "Cancel",
+      "Close": "Close",
+      "Confirm": "Confirm",
+      "Save": "Save",
+      "Online": "online",
+      "Offline": "offline"
+    },
+    "Dock": {
+      "Point": "Point at something on players' screens (Alt+G)",
+      "PointShort": "Point",
+      "Area": "Mark an area of the screen (Alt+Shift+G)",
+      "Clear": "Clear everyone's highlights",
+      "Cleared": "Highlights cleared",
+      "Manager": "Tutorials (Table Guide)",
+      "Drag": "Drag to move",
+      "Help": "Tutorials & help",
+      "HelpShort": "Help",
+      "Call": "Call the GM",
+      "Called": "The GM has been notified",
+      "CallWait": "Wait a moment before calling again",
+      "Pointer": "Point"
+    },
+    "Picker": {
+      "Title": "Choose what to highlight",
+      "Element": "Element",
+      "Area": "Area",
+      "HelpElement": "Click to choose · Wheel: bigger/smaller · Tab: area",
+      "HelpArea": "Click and drag to draw · Tab: element"
+    },
+    "Fx": {
+      "Dim": "Dim the rest",
+      "Ring": "Pulsing glow",
+      "Arrow": "Animated arrow"
+    },
+    "Target": {
+      "None": "Centered message (no highlight)",
+      "MySheet": "Player's sheet",
+      "Sheet": "Sheet",
+      "AreaLabel": "Area drawn on screen"
+    },
+    "Preset": {
+      "sidebar": "Sidebar (whole)",
+      "tab-chat": "Tab: Chat",
+      "chat-log": "Chat messages",
+      "chat-input": "Chat input",
+      "roll-mode": "Roll visibility",
+      "tab-combat": "Tab: Combat",
+      "tab-scenes": "Tab: Scenes",
+      "tab-actors": "Tab: Actors",
+      "tab-items": "Tab: Items",
+      "tab-journal": "Tab: Journal",
+      "tab-tables": "Tab: Tables",
+      "tab-cards": "Tab: Cards",
+      "tab-playlists": "Tab: Playlists",
+      "tab-compendium": "Tab: Compendiums",
+      "tab-settings": "Tab: Settings",
+      "scene-controls": "Scene controls (left)",
+      "hotbar": "Hotbar",
+      "players": "Players list",
+      "navigation": "Scene navigation",
+      "camera": "Camera / video",
+      "my-sheet": "Player's sheet (whole)"
+    },
+    "Tab": {
+      "chat": "Chat",
+      "combat": "Combat",
+      "scenes": "Scenes",
+      "actors": "Actors",
+      "items": "Items",
+      "journal": "Journal",
+      "tables": "Tables",
+      "cards": "Cards",
+      "playlists": "Playlists",
+      "compendium": "Compendiums",
+      "settings": "Settings"
+    },
+    "Before": {
+      "none": "Nothing",
+      "sidebarTab": "Open a sidebar tab",
+      "openMySheet": "Open the player's sheet",
+      "closeWindows": "Close open windows",
+      "openJournal": "Open a journal",
+      "runMacro": "Run a macro"
+    },
+    "Pos": {
+      "auto": "Automatic",
+      "top": "Above",
+      "bottom": "Below",
+      "left": "Left",
+      "right": "Right",
+      "center": "Screen center"
+    },
+    "Tour": {
+      "Next": "Next",
+      "Prev": "Back",
+      "Finish": "Finish",
+      "Skip": "Skip",
+      "Close": "Exit tutorial",
+      "Preview": "Test",
+      "ClickHint": "Click the highlight to continue",
+      "Missing": "This isn't visible on your screen right now. Follow the text above or call the GM."
+    },
+    "Live": {
+      "PickTitle": "What do you want to show the players?",
+      "QuickTitle": "Show to players",
+      "MessagePlaceholder": "Message (optional) — e.g. \"Click here to roll\"",
+      "All": "Everyone",
+      "Seconds": "{n} s",
+      "UntilClosed": "Until closed",
+      "Send": "Show",
+      "GM": "The GM",
+      "IsShowing": "{who} is showing you",
+      "ShowingTo": "You are showing: {who}",
+      "DefaultMessage": "Look here! 👀",
+      "Got": "Got it",
+      "ClearAll": "Clear",
+      "Missing": "That isn't open on your screen. Ask the GM where it is.",
+      "MissingEcho": "Not visible on your screen, but it was sent.",
+      "Acked": "{name} saw the highlight"
+    },
+    "Manager": {
+      "Title": "Table Guide — Tutorials",
+      "New": "New tutorial",
+      "NewName": "New tutorial",
+      "Starter": "Use “First steps” template",
+      "StarterAdded": "Template added — make it yours!",
+      "Import": "Import",
+      "Imported": "{n} tutorial(s) imported",
+      "EmptyTitle": "No tutorials yet",
+      "EmptyText": "Start from the ready-made “First steps in Foundry” template, or build one from scratch by clicking the parts of the screen you want to show.",
+      "Untitled": "(untitled)",
+      "Steps": "{n} steps",
+      "AutoTag": "Opens automatically",
+      "HelpTag": "In Help button",
+      "Send": "Send to players",
+      "SendTitle": "Open “{name}” for whom?",
+      "SendNow": "Send now",
+      "Sent": "Tutorial sent to {n} player(s)",
+      "NoPlayers": "No players in this world.",
+      "Edit": "Edit",
+      "Test": "Test",
+      "Duplicate": "Duplicate",
+      "Copy": "copy",
+      "Export": "Export (JSON)",
+      "ResetProgress": "Reset players' progress",
+      "ResetConfirm": "Reset everyone's progress on <b>{name}</b>?",
+      "Delete": "Delete",
+      "DeleteConfirm": "Delete tutorial <b>{name}</b>? This can't be undone.",
+      "StatusDone": "Finished",
+      "StatusSkipped": "Skipped",
+      "StatusPending": "Not seen yet",
+      "Tip": "During play, use <b>Point</b> on the floating dock (or <b>Alt+G</b>) to highlight anything on the players' screens."
+    },
+    "Editor": {
+      "Title": "Edit tutorial",
+      "NamePh": "Tutorial name",
+      "DescPh": "Short description (shown to players)",
+      "AutoStart": "Open automatically for players who haven't seen it",
+      "ShowInHelp": "Available in the players' Help button",
+      "IconHint": "Icon (Font Awesome class)",
+      "AddFromScreen": "Add by clicking the screen",
+      "AddStep": "Empty step",
+      "NoSteps": "Add the first step by clicking something on screen.",
+      "NoTitle": "(untitled)",
+      "FirstStepTitle": "Welcome!",
+      "FirstStepText": "Write the first message for the player here.",
+      "MoveUp": "Move up",
+      "MoveDown": "Move down",
+      "DeleteStep": "Delete step {n}?",
+      "StepTitle": "Title",
+      "StepTitlePh": "E.g. This is where you roll dice",
+      "StepText": "Text",
+      "StepTextPh": "Explain calmly, as if it's their first time in Foundry.",
+      "StepTextHint": "Supports HTML, Foundry links (@UUID[...]) and rolls ([[/r 1d20]]).",
+      "Target": "What to highlight",
+      "PickElement": "Click on screen",
+      "PickArea": "Draw area",
+      "Presets": "📍 Common places…",
+      "NoTarget": "No highlight",
+      "ShowMe": "Show",
+      "PickTitle": "Click what this step should highlight",
+      "MineSheet": "Show on the player's own sheet (recommended)",
+      "Before": "Before this step",
+      "DropJournal": "Drop a journal here or paste its UUID",
+      "DropMacro": "Drop a macro here or paste its UUID",
+      "Position": "Text position",
+      "Effects": "Effects",
+      "Advance": "To continue",
+      "AdvButton": "Next button",
+      "AdvClick": "Click the highlight",
+      "Image": "Image (optional)",
+      "ImagePh": "Image path",
+      "TestHere": "Test from this step",
+      "TestAll": "Test from start",
+      "Unsaved": "Unsaved changes",
+      "Saved": "Tutorial saved",
+      "NotFound": "Couldn't find that target on screen right now",
+      "DiscardConfirm": "You have unsaved changes in this tutorial.",
+      "SaveAndClose": "Save and close",
+      "Discard": "Discard"
+    },
+    "Help": {
+      "Title": "Tutorials",
+      "Empty": "The GM hasn't prepared tutorials yet."
+    },
+    "Notify": {
+      "EmptyTour": "This tutorial has no steps.",
+      "ImportError": "Invalid file.",
+      "TourDone": "{name} finished “{tour}”",
+      "TourSkipped": "{name} skipped “{tour}”",
+      "HelpCalled": "🙋 {name} is asking for help"
+    },
+    "Keys": {
+      "Point": "Point at something on players' screens",
+      "Area": "Mark an area on players' screens",
+      "Clear": "Clear highlights",
+      "Manager": "Open tutorials"
+    },
+    "Settings": {
+      "Accent": {
+        "Name": "Highlight color",
+        "Hint": "Color of the glow, arrow and buttons (#rrggbb)."
+      },
+      "Dim": {
+        "Name": "Spotlight darkness",
+        "Hint": "How much the rest of the screen darkens."
+      },
+      "HelpButton": {
+        "Name": "Help button for players",
+        "Hint": "Shows players a floating button to replay tutorials and call the GM."
+      },
+      "DockGM": {
+        "Name": "GM floating dock",
+        "Hint": "Shows the Point / Area / Clear / Tutorials dock."
+      },
+      "Echo": {
+        "Name": "See what I'm showing",
+        "Hint": "When you point at something, the highlight also appears on your screen."
+      },
+      "Sound": {
+        "Name": "Sound on highlight",
+        "Hint": "Plays a short chime when the GM points at something."
+      }
+    }
+  }
+}
