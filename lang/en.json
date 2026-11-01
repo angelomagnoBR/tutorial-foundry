@@ -122,7 +122,8 @@
       "Acked": "{name} saw the highlight",
       "NobodyOnline": "None of the chosen players is online.",
       "Delivered": "Delivered to: {names}",
-      "NotDelivered": "Nobody confirmed receiving it. If you just enabled the module, return to Setup and launch the world again, then reload the players' page."
+      "NotDelivered": "Nobody confirmed receiving it. If you just enabled the module, return to Setup and launch the world again, then reload the players' page.",
+      "PickSomeone": "Select at least one player"
     },
     "Manager": {
       "Title": "Table Guide — Tutorials",

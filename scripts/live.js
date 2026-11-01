@@ -30,7 +30,8 @@ class LiveHighlight {
     const body = p.message ? await enrich(p.message) : `<p>${t("Live.DefaultMessage")}</p>`;
     const dur = Number(p.duration) || 0;
 
-    const recipients = !p.users?.length
+    const others = game.users.filter((u) => u.id !== game.user.id).length;
+    const recipients = !p.users?.length || p.users.length >= others
       ? t("Live.All")
       : p.users.map((id) => game.users.get(id)?.name).filter(Boolean).join(", ");
 
@@ -115,9 +116,9 @@ function quickPanel(target, rect) {
         <div class="gdm-quick-target"><i class="${sum.icon}"></i>${esc(sum.text)}</div>
         <input type="text" name="message" autocomplete="off" placeholder="${esc(t("Live.MessagePlaceholder"))}">
         <div class="gdm-chips" data-group="users">
-          <button type="button" class="gdm-chip-btn gdm-on" data-user="">${t("Live.All")}</button>
-          ${players.map((u) => `<button type="button" class="gdm-chip-btn ${u.active ? "" : "gdm-offline"}" data-user="${u.id}">
-              <span class="gdm-dot" style="background:${esc(u.color?.css ?? u.color ?? "#999")}"></span>${esc(u.name)}</button>`).join("")}
+          <label class="gdm-chip-btn gdm-chip-all"><input type="checkbox" data-all checked><i class="fa-solid fa-users"></i>${t("Live.All")}</label>
+          ${players.map((u) => `<label class="gdm-chip-btn ${u.active ? "" : "gdm-offline"}"><input type="checkbox" name="u" value="${u.id}" checked>
+              <span class="gdm-dot" style="background:${esc(u.color?.css ?? u.color ?? "#999")}"></span>${esc(u.name)}</label>`).join("")}
         </div>
         <div class="gdm-quick-row">
           <label class="gdm-toggle"><input type="checkbox" name="dim" ${o.dim ? "checked" : ""}><span>${t("Fx.Dim")}</span></label>
@@ -151,19 +152,14 @@ function quickPanel(target, rect) {
     requestAnimationFrame(() => panel.classList.add("gdm-in"));
     panel.querySelector("input[name=message]").focus();
 
-    // seleção de jogadores: "Todos" ou uma lista
+    // seleção de jogadores: marque quantos quiser; "Todos" marca/desmarca todo mundo
     const chips = panel.querySelector("[data-group=users]");
-    chips.addEventListener("click", (ev) => {
-      const b = ev.target.closest("[data-user]");
-      if (!b) return;
-      const all = chips.querySelector('[data-user=""]');
-      if (!b.dataset.user) {
-        chips.querySelectorAll("[data-user]").forEach((c) => c.classList.toggle("gdm-on", c === all));
-      } else {
-        b.classList.toggle("gdm-on");
-        const any = chips.querySelector("[data-user]:not([data-user=''])" + ".gdm-on");
-        all.classList.toggle("gdm-on", !any);
-      }
+    const allBox = chips.querySelector("input[data-all]");
+    const boxes = [...chips.querySelectorAll("input[name=u]")];
+    chips.addEventListener("change", (ev) => {
+      if (ev.target === allBox) boxes.forEach((b) => { b.checked = allBox.checked; });
+      else allBox.checked = boxes.length > 0 && boxes.every((b) => b.checked);
+      chips.classList.remove("gdm-shake");
     });
 
     const done = (val) => {
@@ -181,7 +177,11 @@ function quickPanel(target, rect) {
     panel.addEventListener("submit", (ev) => {
       ev.preventDefault();
       const f = new FormData(panel);
-      const users = [...chips.querySelectorAll("[data-user].gdm-on")].map((c) => c.dataset.user).filter(Boolean);
+      const users = boxes.filter((b) => b.checked).map((b) => b.value);
+      if (!users.length) {
+        chips.classList.remove("gdm-shake"); void chips.offsetWidth; chips.classList.add("gdm-shake");
+        return toast(t("Live.PickSomeone"), "fa-solid fa-user-plus");
+      }
       const opts = {
         dim: f.get("dim") === "on",
         ring: f.get("ring") === "on",
@@ -226,7 +226,7 @@ export async function pointLive(mode = "element") {
     hid: randomId(),
     target,
     message: choice.message ? `<p>${esc(choice.message)}</p>` : "",
-    users: choice.users.length ? choice.users : null,
+    users: choice.users,
     effects: { dim: choice.dim, ring: choice.ring, arrow: choice.arrow },
     duration: choice.duration
   };

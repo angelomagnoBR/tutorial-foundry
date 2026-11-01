@@ -262,7 +262,13 @@
   font: 500 12.5px var(--gdm-font); color: var(--gdm-ink-soft);
   background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gdm-line); border-radius: 99px; cursor: pointer; box-shadow: none;
 }
-.gdm-chip-btn.gdm-on { color: #1b140a; background: rgb(var(--gdm-accent-rgb)); border-color: transparent; }
+.gdm-chip-btn.gdm-on, .gdm-chip-btn:has(input:checked) { color: #1b140a; background: rgb(var(--gdm-accent-rgb)); border-color: transparent; }
+label.gdm-chip-btn { cursor: pointer; user-select: none; }
+label.gdm-chip-btn input { position: absolute; opacity: 0; width: 0; height: 0; margin: 0; pointer-events: none; }
+label.gdm-chip-btn:has(input:focus-visible) { outline: 2px solid rgba(var(--gdm-accent-rgb), 0.7); outline-offset: 2px; }
+.gdm-chip-btn:has(input:not(:checked)).gdm-chip-all { color: var(--gdm-ink-soft); }
+.gdm-shake { animation: gdm-shake 0.4s; }
+@keyframes gdm-shake { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
 .gdm-offline { opacity: 0.55; }
 .gdm-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: 0 0 auto; box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.4); }
 .gdm-muted { color: var(--gdm-ink-faint); font-size: 13px; }

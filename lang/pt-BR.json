@@ -122,7 +122,8 @@
       "Acked": "{name} viu o destaque",
       "NobodyOnline": "Nenhum jogador escolhido está online agora.",
       "Delivered": "Entregue para: {names}",
-      "NotDelivered": "Ninguém confirmou o recebimento. Se você acabou de ativar o módulo, volte ao menu inicial (Return to Setup) e inicie o mundo de novo; depois recarregue a página dos jogadores."
+      "NotDelivered": "Ninguém confirmou o recebimento. Se você acabou de ativar o módulo, volte ao menu inicial (Return to Setup) e inicie o mundo de novo; depois recarregue a página dos jogadores.",
+      "PickSomeone": "Marque pelo menos um jogador"
     },
     "Manager": {
       "Title": "Guia da Mesa — Tutoriais",
