@@ -102,7 +102,7 @@ function lastOpts() {
 function quickPanel(target, rect) {
   return new Promise((resolve) => {
     const o = lastOpts();
-    const players = game.users.filter((u) => !u.isGM);
+    const players = game.users.filter((u) => u.id !== game.user.id);
     const sum = summarizeTarget(target);
     const panel = html(`
       <form class="gdm-quick">
@@ -231,6 +231,7 @@ export async function pointLive(mode = "element") {
     duration: choice.duration
   };
   emit(payload);
+  watchDelivery(payload);
   if (getSetting("echoToGM")) new LiveHighlight({ ...payload, from: game.user.id }, { echo: true }).show();
 }
 
@@ -243,9 +244,38 @@ export function clearLive({ broadcast = false } = {}) {
 /*  Recebendo (jogadores)                                           */
 /* ---------------------------------------------------------------- */
 export function receiveHighlight(payload) {
-  if (game.user.isGM) return;
-  if (payload.users?.length && !payload.users.includes(game.user.id)) return;
+  if (payload.from === game.user.id) return;
+  if (payload.users?.length) { if (!payload.users.includes(game.user.id)) return; }
+  else if (game.user.isGM) return; // "Todos" = jogadores
+  emit({ action: "received", hid: payload.hid });
   new LiveHighlight(payload).show();
+}
+
+/* ---- confirmação de entrega (diagnóstico) ---- */
+const deliveries = new Map();
+
+function watchDelivery(payload) {
+  const expected = (payload.users?.length
+    ? payload.users.map((id) => game.users.get(id))
+    : game.users.filter((u) => !u.isGM)).filter((u) => u?.active);
+  if (!expected.length) {
+    toast(t("Live.NobodyOnline"), "fa-solid fa-user-slash");
+    return;
+  }
+  const entry = { names: [], timer: null };
+  deliveries.set(payload.hid, entry);
+  entry.timer = setTimeout(() => {
+    deliveries.delete(payload.hid);
+    if (entry.names.length) toast(t("Live.Delivered", { names: esc(entry.names.join(", ")) }), "fa-solid fa-check-double");
+    else toast(t("Live.NotDelivered"), "fa-solid fa-triangle-exclamation");
+  }, 2500);
+}
+
+export function receiveDelivered(data) {
+  const entry = deliveries.get(data.hid);
+  if (!entry) return;
+  const name = game.users.get(data.from)?.name;
+  if (name && !entry.names.includes(name)) entry.names.push(name);
 }
 
 export function receiveAck(data) {

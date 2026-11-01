@@ -119,7 +119,10 @@
       "ClearAll": "Clear",
       "Missing": "That isn't open on your screen. Ask the GM where it is.",
       "MissingEcho": "Not visible on your screen, but it was sent.",
-      "Acked": "{name} saw the highlight"
+      "Acked": "{name} saw the highlight",
+      "NobodyOnline": "None of the chosen players is online.",
+      "Delivered": "Delivered to: {names}",
+      "NotDelivered": "Nobody confirmed receiving it. If you just enabled the module, return to Setup and launch the world again, then reload the players' page."
     },
     "Manager": {
       "Title": "Table Guide — Tutorials",

@@ -20,7 +20,7 @@ const SIDEBAR_TABS = ["chat", "combat", "scenes", "actors", "items", "journal", 
 /* ================================================================ */
 export function chooseUsers(title) {
   return new Promise((resolve) => {
-    const players = game.users.filter((u) => !u.isGM);
+    const players = game.users.filter((u) => u.id !== game.user.id);
     const el = html(`
       <div class="gdm-modal">
         <form class="gdm-modal-card">

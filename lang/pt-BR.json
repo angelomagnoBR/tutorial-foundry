@@ -119,7 +119,10 @@
       "ClearAll": "Apagar",
       "Missing": "Isso não está aberto na sua tela. Pergunte ao narrador onde fica.",
       "MissingEcho": "Este item não está visível na sua tela, mas foi enviado.",
-      "Acked": "{name} viu o destaque"
+      "Acked": "{name} viu o destaque",
+      "NobodyOnline": "Nenhum jogador escolhido está online agora.",
+      "Delivered": "Entregue para: {names}",
+      "NotDelivered": "Ninguém confirmou o recebimento. Se você acabou de ativar o módulo, volte ao menu inicial (Return to Setup) e inicie o mundo de novo; depois recarregue a página dos jogadores."
     },
     "Manager": {
       "Title": "Guia da Mesa — Tutoriais",

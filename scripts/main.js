@@ -3,7 +3,7 @@ import { MODULE_ID, SOCKET, t, getSetting, applyTheme, toast, playChime, esc } f
 import { getTour, getTours, completionStatus } from "./store.js";
 import { TourRunner } from "./tour-runner.js";
 import { TourManager } from "./editor.js";
-import { pointLive, clearLive, receiveHighlight, receiveAck } from "./live.js";
+import { pointLive, clearLive, receiveHighlight, receiveAck, receiveDelivered } from "./live.js";
 import { renderDock, onResize } from "./dock.js";
 
 Hooks.once("init", () => {
@@ -62,6 +62,7 @@ Hooks.once("ready", () => {
   window.addEventListener("resize", onResize);
 
   game.socket.on(SOCKET, onSocket);
+  console.log(`${MODULE_ID} | pronto (${game.user.name}) — escutando ${SOCKET}`);
 
   // API pública (macros)
   const mod = game.modules.get(MODULE_ID);
@@ -90,12 +91,14 @@ function onSocket(data) {
   if (!data?.action) return;
   switch (data.action) {
     case "startTour":
-      if (game.user.isGM || (data.users?.length && !data.users.includes(game.user.id))) return;
+      if (data.from === game.user.id) return;
+      if (data.users?.length ? !data.users.includes(game.user.id) : game.user.isGM) return;
       { const tour = getTour(data.tourId); if (tour) TourRunner.start(tour); }
       break;
     case "highlight": receiveHighlight(data); break;
     case "clear": clearLive(); break;
     case "ack": receiveAck(data); break;
+    case "received": receiveDelivered(data); break;
     case "tourDone":
       if (!game.user.isGM) return;
       {
