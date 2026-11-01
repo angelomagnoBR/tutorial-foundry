@@ -42,9 +42,9 @@ Um botão flutuante **Ajuda** para refazer os tutoriais e um botão ✋ para **c
 ## Instalação
 No Foundry: **Add-on Modules → Install Module → Manifest URL**:
 ```
-https://github.com/angelomagnoBR/tutorial-foundry/releases/latest/download/module.json
+https://raw.githubusercontent.com/angelomagnoBR/tutorial-foundry/main/module.json
 ```
-> O link passa a funcionar depois do primeiro *release* no GitHub. O workflow em `.github/workflows/release.yml` gera o `.zip` e o `module.json` automaticamente quando você publica um release com uma tag como `v1.0.0`.
+> O pacote `guia-da-mesa.zip` fica na raiz do repositório. Ao mudar o código, gere o zip de novo e aumente o `version` no `module.json` para o Foundry oferecer a atualização.
 
 ## Configurações
 - Cor dos destaques e escuridão do holofote (mundo)
