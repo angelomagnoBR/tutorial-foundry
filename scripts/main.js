@@ -6,10 +6,14 @@ import { TourManager } from "./editor.js";
 import { pointLive, clearLive, receiveHighlight, receiveAck, receiveDelivered } from "./live.js";
 import { renderDock, onResize } from "./dock.js";
 
-/** Abre o gerenciador direto na lista "Quem vê o botão de ajuda" (usado pelo menu de configurações) */
-class DockAccessMenu {
-  render() { TourManager.open().then?.(() => TourManager.instance?.el?.querySelector(".gdm-access")?.scrollIntoView({ block: "center" })); return this; }
-  close() {}
+// O Foundry exige que o tipo do menu seja uma Application; esta só abre a nossa janela.
+const MenuBase = foundry.applications?.api?.ApplicationV2 ?? globalThis.FormApplication ?? class {};
+class DockAccessMenu extends MenuBase {
+  render() {
+    Promise.resolve(TourManager.open()).then(() =>
+      TourManager.instance?.el?.querySelector(".gdm-access")?.scrollIntoView({ block: "center" }));
+    return this;
+  }
 }
 
 Hooks.once("init", () => {
@@ -30,14 +34,6 @@ Hooks.once("init", () => {
     scope: "world", config: true, type: Boolean, default: true, onChange: rerender
   });
   reg("dockHiddenUsers", { scope: "world", config: false, type: Array, default: [], onChange: () => { rerender(); TourManager.refresh(); } });
-  game.settings.registerMenu(MODULE_ID, "dockAccess", {
-    name: "GDM.Settings.DockAccess.Name",
-    label: "GDM.Settings.DockAccess.Label",
-    hint: "GDM.Settings.DockAccess.Hint",
-    icon: "fa-solid fa-user-gear",
-    type: DockAccessMenu,
-    restricted: true
-  });
   reg("showDockGM", {
     name: "GDM.Settings.DockGM.Name", hint: "GDM.Settings.DockGM.Hint",
     scope: "client", config: true, type: Boolean, default: true, onChange: rerender
@@ -52,6 +48,19 @@ Hooks.once("init", () => {
   });
   reg("dockPosition", { scope: "client", config: false, type: Object, default: {} });
   reg("liveOptions", { scope: "client", config: false, type: Object, default: {} });
+
+  try {
+    game.settings.registerMenu(MODULE_ID, "dockAccess", {
+      name: "GDM.Settings.DockAccess.Name",
+      label: "GDM.Settings.DockAccess.Label",
+      hint: "GDM.Settings.DockAccess.Hint",
+      icon: "fa-solid fa-user-gear",
+      type: DockAccessMenu,
+      restricted: true
+    });
+  } catch (e) {
+    console.warn(`${MODULE_ID} | menu de configurações indisponível nesta versão do Foundry`, e);
+  }
 
   game.keybindings.register(MODULE_ID, "point", {
     name: "GDM.Keys.Point", editable: [{ key: "KeyG", modifiers: ["Alt"] }],
