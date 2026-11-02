@@ -544,7 +544,7 @@ export class TourEditor extends GdmWindow {
     this.show();
     TourManager.instance?.show();
     if (!res) return null;
-    return res.element ? targetFromElement(res.element, { forTour: true }) : targetFromRect(res.rect);
+    return res.element ? targetFromElement(res.element, { forTour: true }) : targetFromRect(res.rect, { forTour: true });
   }
 
   /** Mostra rapidamente onde o alvo está */

@@ -146,8 +146,86 @@ export function targetFromElement(el, { forTour = false } = {}) {
   return { type: "selector", selector: buildSelector(el, document), sidebarTab: sidebarTabOf(el), label };
 }
 
-export function targetFromRect(r) {
+/* ---- conversão tela <-> mapa (segue zoom e posição da câmera) ---- */
+function boardOffset() {
+  const b = globalThis.canvas?.app?.view ?? document.getElementById("board");
+  const r = b?.getBoundingClientRect?.();
+  return { x: r?.left ?? 0, y: r?.top ?? 0 };
+}
+export function clientToWorld(x, y) {
+  const o = boardOffset();
+  const c = globalThis.canvas;
+  if (typeof c?.canvasCoordinatesFromClient === "function") return c.canvasCoordinatesFromClient({ x, y });
+  const p = c.stage.worldTransform.applyInverse({ x: x - o.x, y: y - o.y });
+  return { x: p.x, y: p.y };
+}
+export function worldToClient(x, y) {
+  const o = boardOffset();
+  const c = globalThis.canvas;
+  if (typeof c?.clientCoordinatesFromCanvas === "function") return c.clientCoordinatesFromCanvas({ x, y });
+  const p = c.stage.worldTransform.apply({ x, y });
+  return { x: p.x + o.x, y: p.y + o.y };
+}
+
+const OWN_UI = ".gdm-picker, .gdm-layer, #gdm-dock, .gdm-window, #gdm-toasts, .gdm-quick, .gdm-popover";
+const LAYOUT_IDS = new Set(["interface", "ui-left", "ui-right", "ui-middle", "ui-top", "ui-bottom", "ui-left-column-1", "ui-left-column-2"]);
+
+function isMapElement(el) {
+  if (!el) return true;
+  return el.id === "board" || el.tagName === "CANVAS" || !!el.closest?.("#board");
+}
+
+/**
+ * Converte uma área desenhada em um alvo que aparece no MESMO lugar para todos,
+ * independente de resolução, tamanho da janela, zoom ou posição da câmera:
+ *  - sobre o mapa  → coordenadas da cena (type "map")
+ *  - sobre um painel → retângulo relativo àquele painel (alvo do elemento + "sub")
+ *  - caso contrário → fração da tela (último recurso)
+ */
+export function targetFromRect(r, { forTour = false } = {}) {
   const W = window.innerWidth, H = window.innerHeight;
+  const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  const under = document.elementsFromPoint(cx, cy)
+    .filter((el) => el !== document.documentElement && el !== document.body && !el.closest(OWN_UI));
+  const top = under[0] ?? null;
+
+  // 1) Mapa
+  const c = globalThis.canvas;
+  if (isMapElement(top) && c?.ready && c.scene) {
+    try {
+      const a = clientToWorld(r.left, r.top), b = clientToWorld(r.right, r.bottom);
+      return {
+        type: "map",
+        sceneId: c.scene.id,
+        sceneName: c.scene.name,
+        rect: { x: a.x, y: a.y, w: b.x - a.x, h: b.y - a.y },
+        label: t("Target.MapArea")
+      };
+    } catch (e) { console.warn("guia-da-mesa | conversão para o mapa falhou", e); }
+  }
+
+  // 2) Painel/janela que contém a área inteira
+  let anchor = top;
+  while (anchor && anchor !== document.body) {
+    const ar = anchor.getBoundingClientRect();
+    const fits = ar.left <= r.left + 6 && ar.top <= r.top + 6 && ar.right >= r.right - 6 && ar.bottom >= r.bottom - 6;
+    if (fits) break;
+    anchor = anchor.parentElement;
+  }
+  if (anchor && anchor !== document.body && !LAYOUT_IDS.has(anchor.id) && !isMapElement(anchor)) {
+    const ar = anchor.getBoundingClientRect();
+    if (ar.width * ar.height < W * H * 0.9 && ar.width > 0 && ar.height > 0) {
+      const base = targetFromElement(anchor, { forTour });
+      base.sub = {
+        x: (r.left - ar.left) / ar.width, y: (r.top - ar.top) / ar.height,
+        w: r.width / ar.width, h: r.height / ar.height
+      };
+      base.label = `${t("Target.AreaIn")} ${describeElement(anchor)}`;
+      return base;
+    }
+  }
+
+  // 3) Último recurso: fração da tela
   return {
     type: "area",
     rect: { x: r.left / W, y: r.top / H, w: r.width / W, h: r.height / H },
@@ -158,9 +236,10 @@ export function targetFromRect(r) {
 /** Texto resumido de um alvo, para listas */
 export function summarizeTarget(target) {
   switch (target?.type) {
-    case "selector": return { icon: "fa-solid fa-crosshairs", text: target.label || target.selector };
+    case "selector": return { icon: target.sub ? "fa-regular fa-square" : "fa-solid fa-crosshairs", text: target.label || target.selector };
     case "sheet": return { icon: "fa-solid fa-id-card", text: (target.mine && !target.preset ? t("Target.MySheet") + " · " : "") + (target.label || t("Target.Sheet")) };
     case "area": return { icon: "fa-regular fa-square", text: target.label || t("Target.AreaLabel") };
+    case "map": return { icon: "fa-solid fa-map-location-dot", text: target.label || t("Target.MapArea") };
     default: return { icon: "fa-regular fa-message", text: t("Target.None") };
   }
 }
@@ -196,6 +275,19 @@ async function fromUuidSafe(uuid) {
   try { return await fromUuid(uuid); } catch (e) { return null; }
 }
 
+/** Acrescenta handle.hit(evento): o clique caiu dentro do destaque? */
+function withHit(handle) {
+  handle.hit = (ev) => {
+    if (handle.kind === "element" && !handle.target?.sub) {
+      const el = handle.element;
+      return !!el && (el === ev.target || el.contains(ev.target));
+    }
+    const r = handle.getRect();
+    return !!r && ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom;
+  };
+  return handle;
+}
+
 /**
  * Retorna uma função que devolve o retângulo atual do alvo (ou null),
  * seguindo o elemento se a janela for arrastada.
@@ -205,13 +297,35 @@ export async function resolveTarget(target, { open = true, timeout = 2500 } = {}
 
   if (target.type === "area") {
     const r = target.rect;
-    return {
+    return withHit({
       kind: "area",
       getRect: () => {
         const W = window.innerWidth, H = window.innerHeight;
         return new DOMRect(r.x * W, r.y * H, r.w * W, r.h * H);
       }
-    };
+    });
+  }
+
+  if (target.type === "map") {
+    const c = globalThis.canvas;
+    if (!c?.ready || c.scene?.id !== target.sceneId) return { kind: "missing", reason: "scene" };
+    const r = target.rect;
+    if (open && target.pan !== false) {
+      try {
+        const view = new DOMRect(0, 0, window.innerWidth, window.innerHeight);
+        const a = worldToClient(r.x, r.y), b = worldToClient(r.x + r.w, r.y + r.h);
+        const visible = a.x >= view.left && a.y >= view.top && b.x <= view.right && b.y <= view.bottom;
+        if (!visible) await c.animatePan({ x: r.x + r.w / 2, y: r.y + r.h / 2, duration: 600 });
+      } catch (e) { /* sem pan, sem problema */ }
+    }
+    return withHit({
+      kind: "area",
+      getRect: () => {
+        if (!globalThis.canvas?.ready || canvas.scene?.id !== target.sceneId) return null;
+        const a = worldToClient(r.x, r.y), b = worldToClient(r.x + r.w, r.y + r.h);
+        return new DOMRect(a.x, a.y, b.x - a.x, b.y - a.y);
+      }
+    });
   }
 
   if (target.type === "selector" && target.sidebarTab && open) {
@@ -244,12 +358,17 @@ export async function resolveTarget(target, { open = true, timeout = 2500 } = {}
       const handle = {
         kind: "element",
         element: el,
+        target,
         getRect: () => {
           if (!handle.element?.isConnected || !isVisible(handle.element)) handle.element = requery();
-          return handle.element ? handle.element.getBoundingClientRect() : null;
+          if (!handle.element) return null;
+          const br = handle.element.getBoundingClientRect();
+          const sb = target.sub;
+          if (!sb) return br;
+          return new DOMRect(br.left + sb.x * br.width, br.top + sb.y * br.height, sb.w * br.width, sb.h * br.height);
         }
       };
-      return handle;
+      return withHit(handle);
     }
     await sleep(120);
   }

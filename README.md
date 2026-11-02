@@ -31,7 +31,7 @@ O jogador não acha onde fica algo? Clique em **Apontar** no painel flutuante (o
 2. se quiser, escreva uma mensagem e escolha para quem mostrar;
 3. **Mostrar**.
 
-O jogador vê o destaque com seta e brilho. Se a coisa estiver em uma aba fechada ou numa ficha que não está aberta, o módulo **abre sozinho**. Quando o jogador clica em *Entendi* ou no próprio destaque, o narrador recebe a confirmação.
+**Áreas desenhadas** ficam presas ao que está embaixo: no mapa, viram coordenadas da cena (o destaque aparece no mesmo ponto do cenário para todos, mesmo com resolução, zoom ou câmera diferentes, e a câmera do jogador vai até lá); em cima de um painel (chat, ficha, barra lateral), ficam presas a esse painel. O jogador vê o destaque com seta e brilho. Se a coisa estiver em uma aba fechada ou numa ficha que não está aberta, o módulo **abre sozinho**. Quando o jogador clica em *Entendi* ou no próprio destaque, o narrador recebe a confirmação.
 
 ![Apontar](docs/apontar.png)
 ![Destaque na tela do jogador](docs/destaque-ao-vivo.png)

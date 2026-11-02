@@ -44,7 +44,7 @@ class LiveHighlight {
             : `<span>${t("Live.IsShowing", { who: esc(from) })}</span>`}
         </div>
         <div class="gdm-card-body">${body}</div>
-        ${res.kind === "missing" ? `<div class="gdm-note"><i class="fa-solid fa-triangle-exclamation"></i>${this.echo ? t("Live.MissingEcho") : t("Live.Missing")}</div>` : ""}
+        ${res.kind === "missing" ? `<div class="gdm-note"><i class="fa-solid fa-triangle-exclamation"></i>${res.reason === "scene" ? t("Live.OtherScene", { scene: esc(p.target.sceneName ?? "") }) : this.echo ? t("Live.MissingEcho") : t("Live.Missing")}</div>` : ""}
         <div class="gdm-card-actions">
           <span class="gdm-flex"></span>
           ${this.echo
@@ -76,8 +76,8 @@ class LiveHighlight {
   }
 
   _onClick(ev) {
-    const el = this.res?.element;
-    if (el && (el === ev.target || el.contains(ev.target))) setTimeout(() => this.close(true), 150);
+    if (ev.target.closest?.(".gdm-card")) return;
+    if (this.res?.hit?.(ev)) setTimeout(() => this.close(true), 150);
   }
 
   close(ack) {

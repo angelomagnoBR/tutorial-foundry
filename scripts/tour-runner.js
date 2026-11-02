@@ -102,7 +102,7 @@ export class TourRunner {
     const i = this.index;
     const last = i === n - 1;
     const body = await enrich(step.text);
-    const clickMode = step.advance === "click" && res.kind === "element";
+    const clickMode = step.advance === "click" && (res.kind === "element" || res.kind === "area");
     const missing = res.kind === "missing";
     const card = html(`
       <div class="gdm-card gdm-card-tour" role="dialog" aria-live="polite">
@@ -147,9 +147,9 @@ export class TourRunner {
 
   _onClick(ev) {
     const step = this.tour.steps[this.index];
-    if (step?.advance !== "click" || this._target?.kind !== "element") return;
-    const el = this._target.element;
-    if (el && (el === ev.target || el.contains(ev.target))) {
+    if (step?.advance !== "click" || !this._target?.hit) return;
+    if (ev.target.closest?.(".gdm-card")) return;
+    if (this._target.hit(ev)) {
       const idx = this.index;
       // deixa o clique fazer efeito (ex.: abrir a aba) e depois avança
       setTimeout(() => { if (this.index === idx && TourRunner.current === this) this.next(); }, 220);
