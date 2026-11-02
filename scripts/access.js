@@ -33,6 +33,7 @@ export class AccessWindow extends GdmWindow {
           <button type="button" class="gdm-btn gdm-ghost gdm-sm" data-act="none"><i class="fa-solid fa-eye-slash"></i>${t("Access.HideAll")}</button>
           <button type="button" class="gdm-btn gdm-ghost gdm-sm" data-act="all"><i class="fa-solid fa-eye"></i>${t("Access.ShowAll")}</button>
           <span class="gdm-flex"></span>
+          <small class="gdm-muted">v${esc(game.modules.get("guia-da-mesa")?.version ?? "?")}</small>
           <button type="button" class="gdm-btn gdm-primary" data-act="done"><i class="fa-solid fa-check"></i>${t("Access.Done")}</button>
         </div>
       </div>`;

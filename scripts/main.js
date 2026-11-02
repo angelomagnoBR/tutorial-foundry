@@ -83,7 +83,7 @@ Hooks.once("ready", () => {
   window.addEventListener("resize", onResize);
 
   game.socket.on(SOCKET, onSocket);
-  console.log(`${MODULE_ID} | pronto (${game.user.name}) — escutando ${SOCKET}`);
+  console.log(`${MODULE_ID} v${game.modules.get(MODULE_ID)?.version ?? "?"} | pronto (${game.user.name}) — escutando ${SOCKET}`);
 
   // API pública (macros)
   const mod = game.modules.get(MODULE_ID);
