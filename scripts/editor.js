@@ -1,6 +1,6 @@
 // Guia da Mesa — Gerenciador de tutoriais e editor de passos (narrador)
 import {
-  t, esc, html, emit, deepClone, saveJSON, pickJSONFile, openFilePicker, sleep, toast
+  t, esc, html, emit, deepClone, saveJSON, pickJSONFile, openFilePicker, sleep, toast, getSetting, setSetting
 } from "./util.js";
 import { GdmWindow, confirmBox } from "./window.js";
 import {
@@ -72,6 +72,7 @@ export class TourManager extends GdmWindow {
   async content() {
     const tours = getTours();
     const players = game.users.filter((u) => !u.isGM);
+    const hidden = getSetting("dockHiddenUsers") ?? [];
     const statusChip = (u, tour) => {
       const s = completionStatus(u, tour.id);
       const icon = s === "done" ? "fa-solid fa-circle-check" : s === "skipped" ? "fa-solid fa-forward" : "fa-regular fa-circle";
@@ -121,11 +122,31 @@ export class TourManager extends GdmWindow {
               </div>
             </article>`).join("")}
         </div>
+        ${players.length ? `
+        <div class="gdm-access">
+          <div class="gdm-access-head">
+            <i class="fa-solid fa-user-gear"></i>
+            <span><b>${t("Manager.AccessTitle")}</b><small>${t("Manager.AccessHint")}</small></span>
+          </div>
+          <div class="gdm-chips">
+            ${players.map((u) => `<label class="gdm-chip-btn ${u.active ? "" : "gdm-offline"}">
+              <input type="checkbox" data-access value="${u.id}" ${hidden.includes(u.id) ? "" : "checked"}>
+              <span class="gdm-dot" style="background:${esc(u.color?.css ?? u.color ?? "#999")}"></span>${esc(u.name)}</label>`).join("")}
+          </div>
+        </div>` : ""}
         <div class="gdm-tip"><i class="fa-solid fa-lightbulb"></i><span>${t("Manager.Tip")}</span></div>
       </div>`;
   }
 
   activate(body) {
+    // quem vê o botão de ajuda
+    body.querySelectorAll("input[data-access]").forEach((box) => box.addEventListener("change", async () => {
+      const hiddenIds = [...body.querySelectorAll("input[data-access]")].filter((b) => !b.checked).map((b) => b.value);
+      await setSetting("dockHiddenUsers", hiddenIds);
+      const name = game.users.get(box.value)?.name ?? "";
+      toast(t(box.checked ? "Manager.AccessOn" : "Manager.AccessOff", { name: esc(name) }), box.checked ? "fa-solid fa-eye" : "fa-solid fa-eye-slash");
+    }));
+
     body.addEventListener("click", async (ev) => {
       const b = ev.target.closest("[data-act]");
       if (!b) return;

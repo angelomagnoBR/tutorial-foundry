@@ -6,6 +6,12 @@ import { TourManager } from "./editor.js";
 import { pointLive, clearLive, receiveHighlight, receiveAck, receiveDelivered } from "./live.js";
 import { renderDock, onResize } from "./dock.js";
 
+/** Abre o gerenciador direto na lista "Quem vê o botão de ajuda" (usado pelo menu de configurações) */
+class DockAccessMenu {
+  render() { TourManager.open().then?.(() => TourManager.instance?.el?.querySelector(".gdm-access")?.scrollIntoView({ block: "center" })); return this; }
+  close() {}
+}
+
 Hooks.once("init", () => {
   const reg = (key, data) => game.settings.register(MODULE_ID, key, data);
   const rerender = () => renderDock();
@@ -22,6 +28,15 @@ Hooks.once("init", () => {
   reg("playerHelpButton", {
     name: "GDM.Settings.HelpButton.Name", hint: "GDM.Settings.HelpButton.Hint",
     scope: "world", config: true, type: Boolean, default: true, onChange: rerender
+  });
+  reg("dockHiddenUsers", { scope: "world", config: false, type: Array, default: [], onChange: () => { rerender(); TourManager.refresh(); } });
+  game.settings.registerMenu(MODULE_ID, "dockAccess", {
+    name: "GDM.Settings.DockAccess.Name",
+    label: "GDM.Settings.DockAccess.Label",
+    hint: "GDM.Settings.DockAccess.Hint",
+    icon: "fa-solid fa-user-gear",
+    type: DockAccessMenu,
+    restricted: true
   });
   reg("showDockGM", {
     name: "GDM.Settings.DockGM.Name", hint: "GDM.Settings.DockGM.Hint",

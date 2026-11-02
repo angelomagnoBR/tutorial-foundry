@@ -2,7 +2,7 @@
   "id": "guia-da-mesa",
   "title": "Guia da Mesa — Tutoriais e Destaques",
   "description": "Ensine quem nunca usou o Foundry: o narrador monta tutoriais clicando na própria tela (holofote, seta animada, brilho) e, durante a sessão, aponta ao vivo qualquer botão, aba ou campo da ficha na tela dos jogadores.",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Angelo",

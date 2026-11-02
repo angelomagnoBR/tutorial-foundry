@@ -156,7 +156,11 @@
       "StatusDone": "Concluiu",
       "StatusSkipped": "Pulou",
       "StatusPending": "Ainda não viu",
-      "Tip": "Durante o jogo, use o botão <b>Apontar</b> do painel flutuante (ou <b>Alt+G</b>) para destacar qualquer coisa na tela dos jogadores."
+      "Tip": "Durante o jogo, use o botão <b>Apontar</b> do painel flutuante (ou <b>Alt+G</b>) para destacar qualquer coisa na tela dos jogadores.",
+      "AccessTitle": "Quem vê o botão de ajuda na tela",
+      "AccessHint": "Clique no nome para ligar ou desligar a barrinha (Ajuda / chamar o narrador) daquele jogador. Os destaques e tutoriais que você enviar continuam chegando para todos.",
+      "AccessOn": "Barrinha ligada para {name}",
+      "AccessOff": "Barrinha escondida para {name}"
     },
     "Editor": {
       "Title": "Editar tutorial",
@@ -247,6 +251,11 @@
       "Sound": {
         "Name": "Som ao receber destaque",
         "Hint": "Toca um aviso curto quando o narrador aponta algo."
+      },
+      "DockAccess": {
+        "Name": "Quem vê o botão de ajuda",
+        "Label": "Escolher jogadores",
+        "Hint": "Escolha para quais jogadores a barrinha de ajuda aparece na tela."
       }
     }
   }

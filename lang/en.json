@@ -156,7 +156,11 @@
       "StatusDone": "Finished",
       "StatusSkipped": "Skipped",
       "StatusPending": "Not seen yet",
-      "Tip": "During play, use <b>Point</b> on the floating dock (or <b>Alt+G</b>) to highlight anything on the players' screens."
+      "Tip": "During play, use <b>Point</b> on the floating dock (or <b>Alt+G</b>) to highlight anything on the players' screens.",
+      "AccessTitle": "Who sees the help button",
+      "AccessHint": "Click a name to turn that player's help bar (Help / call GM) on or off. Highlights and tutorials you send still reach everyone.",
+      "AccessOn": "Help bar on for {name}",
+      "AccessOff": "Help bar hidden for {name}"
     },
     "Editor": {
       "Title": "Edit tutorial",
@@ -247,6 +251,11 @@
       "Sound": {
         "Name": "Sound on highlight",
         "Hint": "Plays a short chime when the GM points at something."
+      },
+      "DockAccess": {
+        "Name": "Who sees the help button",
+        "Label": "Choose players",
+        "Hint": "Choose which players see the help bar on screen."
       }
     }
   }
