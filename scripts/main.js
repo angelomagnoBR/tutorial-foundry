@@ -5,15 +5,12 @@ import { TourRunner } from "./tour-runner.js";
 import { TourManager } from "./editor.js";
 import { pointLive, clearLive, receiveHighlight, receiveAck, receiveDelivered } from "./live.js";
 import { renderDock, onResize } from "./dock.js";
+import { AccessWindow } from "./access.js";
 
 // O Foundry exige que o tipo do menu seja uma Application; esta só abre a nossa janela.
 const MenuBase = foundry.applications?.api?.ApplicationV2 ?? globalThis.FormApplication ?? class {};
 class DockAccessMenu extends MenuBase {
-  render() {
-    Promise.resolve(TourManager.open()).then(() =>
-      TourManager.instance?.el?.querySelector(".gdm-access")?.scrollIntoView({ block: "center" }));
-    return this;
-  }
+  render() { AccessWindow.open(); return this; }
 }
 
 Hooks.once("init", () => {

@@ -48,7 +48,8 @@ https://raw.githubusercontent.com/angelomagnoBR/tutorial-foundry/main/module.jso
 
 ## Configurações
 - Cor dos destaques e escuridão do holofote (mundo)
-- Botão de ajuda para jogadores (mundo) e **quem vê o botão**: no gerenciador de tutoriais (ou em Configurações → *Escolher jogadores*), clique no nome para ligar ou desligar a barrinha daquele jogador
+- Botão de ajuda para jogadores (mundo)
+- **Quem vê a barra flutuante**: em Configurações → Guia da Mesa → *Escolher usuários*, ligue ou desligue a barra para cada usuário (mestres e jogadores)
 - Painel flutuante do narrador, eco do destaque na sua tela e som (por usuário)
 - Atalhos em **Configurar Controles**: Apontar (Alt+G), Área (Alt+Shift+G), Apagar destaques, Abrir tutoriais
 

@@ -12,6 +12,7 @@ import { PRESETS, presetTarget, summarizeTarget, targetFromElement, targetFromRe
 import { pick } from "./picker.js";
 import { TourRunner, runBefore } from "./tour-runner.js";
 import { Spotlight } from "./spotlight.js";
+import { AccessWindow } from "./access.js";
 
 const SIDEBAR_TABS = ["chat", "combat", "scenes", "actors", "items", "journal", "tables", "cards", "playlists", "compendium", "settings"];
 
@@ -122,31 +123,16 @@ export class TourManager extends GdmWindow {
               </div>
             </article>`).join("")}
         </div>
-        ${players.length ? `
-        <div class="gdm-access">
-          <div class="gdm-access-head">
-            <i class="fa-solid fa-user-gear"></i>
-            <span><b>${t("Manager.AccessTitle")}</b><small>${t("Manager.AccessHint")}</small></span>
-          </div>
-          <div class="gdm-chips">
-            ${players.map((u) => `<label class="gdm-chip-btn ${u.active ? "" : "gdm-offline"}">
-              <input type="checkbox" data-access value="${u.id}" ${hidden.includes(u.id) ? "" : "checked"}>
-              <span class="gdm-dot" style="background:${esc(u.color?.css ?? u.color ?? "#999")}"></span>${esc(u.name)}</label>`).join("")}
-          </div>
-        </div>` : ""}
+        <button type="button" class="gdm-access-link" data-act="access">
+          <i class="fa-solid fa-user-gear"></i>
+          <span><b>${t("Access.Title")}</b><small>${t("Access.Summary", { n: [...game.users].length - hidden.length, total: [...game.users].length })}</small></span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
         <div class="gdm-tip"><i class="fa-solid fa-lightbulb"></i><span>${t("Manager.Tip")}</span></div>
       </div>`;
   }
 
   activate(body) {
-    // quem vê o botão de ajuda
-    body.querySelectorAll("input[data-access]").forEach((box) => box.addEventListener("change", async () => {
-      const hiddenIds = [...body.querySelectorAll("input[data-access]")].filter((b) => !b.checked).map((b) => b.value);
-      await setSetting("dockHiddenUsers", hiddenIds);
-      const name = game.users.get(box.value)?.name ?? "";
-      toast(t(box.checked ? "Manager.AccessOn" : "Manager.AccessOff", { name: esc(name) }), box.checked ? "fa-solid fa-eye" : "fa-solid fa-eye-slash");
-    }));
-
     body.addEventListener("click", async (ev) => {
       const b = ev.target.closest("[data-act]");
       if (!b) return;
@@ -179,6 +165,7 @@ export class TourManager extends GdmWindow {
           break;
         }
         case "edit": TourEditor.open(id); break;
+        case "access": AccessWindow.open(); break;
         case "test": {
           this.hide();
           TourRunner.start(tour, { preview: true, onEnd: () => this.show() });

@@ -156,11 +156,7 @@
       "StatusDone": "Finished",
       "StatusSkipped": "Skipped",
       "StatusPending": "Not seen yet",
-      "Tip": "During play, use <b>Point</b> on the floating dock (or <b>Alt+G</b>) to highlight anything on the players' screens.",
-      "AccessTitle": "Who sees the help button",
-      "AccessHint": "Click a name to turn that player's help bar (Help / call GM) on or off. Highlights and tutorials you send still reach everyone.",
-      "AccessOn": "Help bar on for {name}",
-      "AccessOff": "Help bar hidden for {name}"
+      "Tip": "During play, use <b>Point</b> on the floating dock (or <b>Alt+G</b>) to highlight anything on the players' screens."
     },
     "Editor": {
       "Title": "Edit tutorial",
@@ -253,10 +249,23 @@
         "Hint": "Plays a short chime when the GM points at something."
       },
       "DockAccess": {
-        "Name": "Who sees the help button",
-        "Label": "Choose players",
-        "Hint": "Choose which players see the help bar on screen."
+        "Name": "Who sees the floating bar",
+        "Label": "Choose users",
+        "Hint": "Choose, one by one, which users (GMs and players) see the module's floating bar."
       }
+    },
+    "Access": {
+      "Title": "Who sees the floating bar",
+      "Intro": "Turn on who should see the floating bar. <b>GMs</b> get the <b>Point</b> bar; <b>players</b> get the <b>Help / call GM</b> bar. Turning it off only hides the bar: highlights and tutorials still arrive. If you hide your own, use <b>Alt+G</b> to point and open tutorials from the settings.",
+      "You": "you",
+      "RoleGM": "GM — Point bar",
+      "RolePlayer": "Player — Help bar",
+      "HideAll": "Turn all off",
+      "ShowAll": "Turn all on",
+      "Done": "Done",
+      "On": "Bar on for {name}",
+      "Off": "Bar hidden for {name}",
+      "Summary": "On for {n} of {total} users — click to choose"
     }
   }
 }

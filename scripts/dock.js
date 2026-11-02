@@ -14,7 +14,7 @@ export function renderDock() {
   const gm = game.user.isGM;
   if (gm && !getSetting("showDockGM")) return;
   if (!gm && !getSetting("playerHelpButton")) return;
-  if (!gm && (getSetting("dockHiddenUsers") ?? []).includes(game.user.id)) return;
+  if ((getSetting("dockHiddenUsers") ?? []).includes(game.user.id)) return; // escolhido pelo narrador
 
   dock = html(`
     <div id="gdm-dock" class="${gm ? "gdm-dock-gm" : "gdm-dock-player"}">

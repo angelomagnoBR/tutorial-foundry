@@ -156,11 +156,7 @@
       "StatusDone": "Concluiu",
       "StatusSkipped": "Pulou",
       "StatusPending": "Ainda não viu",
-      "Tip": "Durante o jogo, use o botão <b>Apontar</b> do painel flutuante (ou <b>Alt+G</b>) para destacar qualquer coisa na tela dos jogadores.",
-      "AccessTitle": "Quem vê o botão de ajuda na tela",
-      "AccessHint": "Clique no nome para ligar ou desligar a barrinha (Ajuda / chamar o narrador) daquele jogador. Os destaques e tutoriais que você enviar continuam chegando para todos.",
-      "AccessOn": "Barrinha ligada para {name}",
-      "AccessOff": "Barrinha escondida para {name}"
+      "Tip": "Durante o jogo, use o botão <b>Apontar</b> do painel flutuante (ou <b>Alt+G</b>) para destacar qualquer coisa na tela dos jogadores."
     },
     "Editor": {
       "Title": "Editar tutorial",
@@ -253,10 +249,23 @@
         "Hint": "Toca um aviso curto quando o narrador aponta algo."
       },
       "DockAccess": {
-        "Name": "Quem vê o botão de ajuda",
-        "Label": "Escolher jogadores",
-        "Hint": "Escolha para quais jogadores a barrinha de ajuda aparece na tela."
+        "Name": "Quem vê a barra flutuante",
+        "Label": "Escolher usuários",
+        "Hint": "Escolha, um por um, quais usuários (mestres e jogadores) veem a barra flutuante do módulo."
       }
+    },
+    "Access": {
+      "Title": "Quem vê a barra flutuante",
+      "Intro": "Ligue para quem deve ver a barra flutuante. <b>Mestres</b> veem a barra <b>Apontar</b>; <b>jogadores</b>, a barra <b>Ajuda / chamar o narrador</b>. Desligar só esconde a barra: destaques e tutoriais enviados continuam chegando. Se esconder a sua, use <b>Alt+G</b> para apontar e abra os tutoriais por aqui nas configurações.",
+      "You": "você",
+      "RoleGM": "Mestre — barra Apontar",
+      "RolePlayer": "Jogador — barra Ajuda",
+      "HideAll": "Desligar todos",
+      "ShowAll": "Ligar todos",
+      "Done": "Pronto",
+      "On": "Barra ligada para {name}",
+      "Off": "Barra escondida para {name}",
+      "Summary": "Ligada para {n} de {total} usuários — clique para escolher"
     }
   }
 }
